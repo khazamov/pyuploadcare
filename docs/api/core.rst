@@ -38,7 +38,22 @@ File API Resource
 
 File Group API Resource
 -----------------------
-
+    """File Group resource for working with user-uploaded group of files.
+    It can take group id or group CDN url::
+        >>> file_group = FileGroup('0513dda0-582f-447d-846f-096e5df9e2bb~2')
+    You can iterate ``file_group`` or get ``File`` instance by key::
+        >>> [file_ for file_ in file_group]
+        [<uploadcare.File 6c5e9526-b0fe-4739-8975-72e8d5ee6342>, None]
+        >>> file_group[0]
+        <uploadcare.File 6c5e9526-b0fe-4739-8975-72e8d5ee6342>
+        >>> len(file_group)
+        2
+    But slicing is not supported because ``FileGroup`` is immutable::
+        >>> file_group[:]
+        TypeError: slicing is not supported
+    If file was deleted then you will get ``None``::
+        >>> file_group[1]
+        None
 .. autoclass:: pyuploadcare.api_resources.FileGroup
    :members:
    :undoc-members:
